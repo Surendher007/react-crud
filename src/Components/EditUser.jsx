@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate,useParams } from 'react-router-dom';
 import { findIndexId } from '../Common/Helper';
+import { UserContext } from '../App';
 
-function EditUser({user,setUser}) {
+function EditUser() {
+let {user,setUser}=useContext(UserContext)
+
 let [name,setName]= useState("")
 let [email,setEmail]= useState("")
 let [dob,setDob] = useState("")
@@ -50,7 +53,7 @@ useEffect(()=>{
           <div id="content">
               <div className="container-fluid">
                   <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                      <h1 className="h3 mb-0 text-gray-800">Add User</h1>
+                      <h1 className="h3 mb-0 text-gray-800">Edit user</h1>
                   </div>
                   
                   <div className="row">

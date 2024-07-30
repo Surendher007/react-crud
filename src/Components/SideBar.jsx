@@ -47,6 +47,19 @@ function SideBar() {
         <span>Profile</span>
     </Link>
 </li>
+<li className="nav-item">
+    <Link to='/use-ref' className="nav-link collapsed">
+        <i className="fas fa-fw fa-wrench"></i>
+        <span>Use Ref</span>
+    </Link>
+</li>
+<li className="nav-item">
+    <Link to='/reduser' className="nav-link collapsed">
+        <i className="fas fa-fw fa-wrench"></i>
+        <span>Reduser</span>
+    </Link>
+</li>
+
 
 {/* <!-- Divider --> */}
 <hr className="sidebar-divider"/>

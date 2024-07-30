@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DashboardMainContext } from '../Context/DashBoardContext'
 
 function Profile() {
+    let data = useContext(DashboardMainContext)
+    console.log(data)
   return <>
       <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">

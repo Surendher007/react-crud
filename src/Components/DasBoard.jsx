@@ -1,41 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Card from './Card'
 import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
 import {findIndexId} from '../Common/Helper'
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../App';
+import { DashboardMainContext } from '../Context/DashBoardContext';
 
-function DasBoard({user,setUser}) {
-    let data = [
-        {
-          tittle:" Earnings (Monthly",
-          price:"40,000",
-          color:'primary',
-          icon:'fa-calendar',
-          isProgress:false
-        },
-        {
-          tittle:" Earnings (Annual)",
-          price:"215,000",
-          color:'success',
-          icon:'fa-dollar',
-          isProgress:false
-        },
-        {
-          tittle:" Tasks",
-          price:"20",
-          color:'info',
-          icon:'fa-clipboard',
-          isProgress:false
-        },
-        {
-          tittle:"Pending Requests",
-          price:"18",
-          color:'warning',
-          icon:'fa-comments',
-          isProgress:false
-        }
-      ]
+function DasBoard() {
+let {user,setUser} = useContext(UserContext)
+let data = useContext(DashboardMainContext)
+
+  
 let navigate = useNavigate()
 
 

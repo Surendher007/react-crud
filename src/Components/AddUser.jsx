@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../App';
 
-function AddUser({user,setUser}) {
+function AddUser() {
+let {user,setUser} = useContext(UserContext)
+
 let [name,setName]= useState("")
 let [email,setEmail]= useState("")
 let [dob,setDob] = useState("")
@@ -46,6 +49,7 @@ let handleSubmit = ()=>{
       <Form.Group className="mb-3">
         <Form.Label>Gender</Form.Label>
         <Form.Select onChange={(e)=>setGender(e.target.value)}>
+        <option value="null">select one</option>
           <option value="male">Male</option>
           <option value="female">female</option>
           <option value="others">others</option>
