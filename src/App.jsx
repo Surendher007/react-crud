@@ -75,7 +75,7 @@ function reducer(state, action) {
     case Actions.ADD_USER: {
       action.payload.id = state.length ? state[state.length - 1].id + 1 : 1;
       state.push(action.payload)
-      return [...state, action.payload];
+      return [...state];
     }
     case Actions.EDIT_USER :{
       let index = findIndexId(state, action.payload.id);
