@@ -2,30 +2,16 @@ import React, {useContext} from 'react'
 import Card from './Card'
 import Table from 'react-bootstrap/Table';
 import { Button } from 'react-bootstrap';
-import {findIndexId} from '../Common/Helper'
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
 import { DashboardMainContext } from '../Context/DashBoardContext';
+import Actions from '../Utils/Actions';
+import { findIndexId } from '../Common/Helper';
 
 function DasBoard() {
-let {user,setUser} = useContext(UserContext)
+let {state,dispatch} = useContext(UserContext)
 let data = useContext(DashboardMainContext)
-
-  
 let navigate = useNavigate()
-
-
-
-let handleDelete = (id)=>{
-  let index = findIndexId(user,id)
-  if(index !=-1){
-user.splice(index,1)
-setUser([...user])
-  }
-  else{
-alert("invalid entry")
-  }
-}
 
   return <>
       <div id="content-wrapper" className="d-flex flex-column">
@@ -58,7 +44,7 @@ alert("invalid entry")
       </thead>
       <tbody>
         {
-          user.map((e)=> {
+          state.map((e)=> {
             return <tr key={e.id}>
               <td>{e.id}</td>
               <td>{e.name}</td>
@@ -69,7 +55,7 @@ alert("invalid entry")
               <td>
                 <Button variant='primary'onClick={()=>navigate(`/edit-user/${e.id}`)}>Edit</Button>
                 &nbsp;
-                <Button variant='danger'onClick={()=>handleDelete(e.id)}>Delete</Button>
+                <Button variant='danger'onClick={()=>dispatch({type:Actions.DELETE_USER,payload:e.id})}>Delete</Button>
               </td>
             </tr>
           })

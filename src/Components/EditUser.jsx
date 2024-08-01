@@ -4,9 +4,10 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate,useParams } from 'react-router-dom';
 import { findIndexId } from '../Common/Helper';
 import { UserContext } from '../App';
+import Actions from '../Utils/Actions';
 
 function EditUser() {
-let {user,setUser}=useContext(UserContext)
+let {state,dispatch}=useContext(UserContext)
 
 let [name,setName]= useState("")
 let [email,setEmail]= useState("")
@@ -18,20 +19,17 @@ let navigate = useNavigate()
 let {id} = useParams()
 
 let handleSubmit = ()=>{
-    let data = {id:Number(id),name,email,dob,gender,subscription}
-    let index = findIndexId(user,Number(id))
-    user.splice(index,1,data)
-    setUser([...user])
+  dispatch({type:Actions.EDIT_USER,payload:{id:Number(id),name,email,dob,gender,subscription}})
 navigate('/')
 }
 let getData = ()=>{
-    let index = findIndexId(user,Number(id))
+    let index = findIndexId(state,Number(id))
     if(index!=-1){
-setName(user[index].name)
-setEmail(user[index].email)
-setDob(user[index].dob)
-setGender(user[index].gender)
-setSubscription(user[index].subscription)
+setName(state[index].name)
+setEmail(state[index].email)
+setDob(state[index].dob)
+setGender(state[index].gender)
+setSubscription(state[index].subscription)
     }
     else{
 alert("invalid entry")
@@ -43,11 +41,6 @@ useEffect(()=>{
         getData()
     }
 },[])
-
-
-
- 
-
   return <>
   <div id="content-wrapper" className="d-flex flex-column">
           <div id="content">

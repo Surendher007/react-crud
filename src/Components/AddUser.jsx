@@ -3,9 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../App';
+import Actions from '../Utils/Actions';
 
 function AddUser() {
-let {user,setUser} = useContext(UserContext)
+let {dispatch} = useContext(UserContext)
 
 let [name,setName]= useState("")
 let [email,setEmail]= useState("")
@@ -16,11 +17,7 @@ let [subscription,setSubscription] = useState(false)
 let navigate = useNavigate()
 
 let handleSubmit = ()=>{
-  let data = {name,email,dob,gender,subscription}
-  data.id = user.length?user[user.length-1].id+1:1
-  user.push(data)
-  setUser([...user])
-
+  dispatch({type:Actions.ADD_USER,payload:{name,email,dob,gender,subscription}})
   navigate('/')
 }
   return <>
@@ -47,7 +44,7 @@ let handleSubmit = ()=>{
         <Form.Control type="date" placeholder="DOB" onChange={(e)=>setDob(e.target.value)}/>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Gender</Form.Label>
+        <Form.Label defaultValue="null">Gender</Form.Label>
         <Form.Select onChange={(e)=>setGender(e.target.value)}>
         <option value="null">select one</option>
           <option value="male">Male</option>
